@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="description"
         content="High-Quality Real-Time Rendering Using Subpixel Sampling Reconstruction">
-  <meta name="keywords" content="diffusion, nerf">
+  <meta name="keywords" content="Real-time, rendering, Monte Carlo denoising">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>High-Quality Real-Time Rendering Using Subpixel Sampling Reconstruction</title>
   <link rel="icon" href="https://pic.imgdb.cn/item/657fea9fc458853aef34f758.png" type="furina.ico">
@@ -19,11 +19,25 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="./static/css/grid.css">
 
+
+
+
+  <link href="./static/css/style.css" rel="stylesheet">
+
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <script src="./static/js/script.js" type="text/javascript"></script>
+
+
+
+
+
+
   <style>
     .video-margin {
       margin-bottom: 20px; 
@@ -38,6 +52,7 @@
 <body>
 
 
+
 <section class="hero">
   <div class="reduce-space">
   <div class="hero-body">
@@ -47,9 +62,9 @@
           <h1 class="title is-1 publication-title"><span class='main-title'>High-Quality Real-Time Rendering <br> Using Subpixel Sampling Reconstruction</span>
           </h1>
 
-            <h2 class="col-md-12 text-center" id="title">
+            <h5 class="col-md-12 text-center" id="title">
                 <b>AAAI 2024</b> <br> 
-            </h2>
+            </h5>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -144,7 +159,7 @@
 
 
             <h2 class="col-md-12 text-center" id="title">
-                <center><b>Our subpixel reconstruction achieves comparable image quality with RAE/NSRR while being 1.5x faster.</center></b> <br> 
+                <center><b>Our subpixel reconstruction achieves superior image quality while being 1.5x faster.</center></b> <br> 
             </h2>
 
           </figure>
@@ -155,8 +170,41 @@
         </div>
         <br> 
       </div>
-    <!--/ Abstract. -->
+
   </div>
+
+
+
+
+  <div class="container is-max-desktop">
+    <div class="rows is-centered">
+
+        <center>
+            <div class="pt-3"></div>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-8 alert alert-success" role="alert">
+                    <b>Tip:</b> drag the sliders in the figures below to compare the images before and after our method.
+                </div>
+            </div>
+            <br>
+
+            <div class="teaser">
+                <div class="teaser-bg" id="bg1">
+                    <div class="teaser-fg" id="fg1"></div>
+                    <div class="slider-button" id="sliderBt1"></div>
+                    <input type="range" min="0" max="100" value="50" class="teaser-slider" id="slider1" oninput="moveDivisor(1)">
+                </div>
+            </div>
+        </center>
+
+      <br><br>
+
+
+
+
+
+
   <div class="container is-max-desktop">
     <div class="rows is-centered">
       <div class="row">
@@ -175,21 +223,10 @@ Subpixel sampling reconstruction includes two modules: <span style="color: green
   </div>
   <br><br>
 
-  <div class="container is-max-desktop">
-    <div class="rows is-centered">
-      <div class="row">
-        <h2 class="title is-3 has-text-centered">Comparison to MC denoising approaches</h2>
-      </div>
 
-      <br><br>
-      
-      <div class="comparison-set">
-        <p style="text-align: center;">Visual results on scenes BistroInterior, BistroExterior, Sponza, Warmroom and Angel, evaluated at 1024×2048. The ground
-truth image is rendered at 32768-spp for reference.</p><br> <!-- Replace with your actual text prompt -->
-      <img src="static/images/comparison2.jpg" alt="comparision">
-      </div>
 
-      <br><br>
+
+
 
 
       <div class="row">
@@ -198,11 +235,25 @@ truth image is rendered at 32768-spp for reference.</p><br> <!-- Replace with yo
 
       <br><br>
 
-      <div class="comparison-set">
-        
-      <img src="static/images/datasets.jpg" alt="data">
 
+      <div class="comparison-set2">
+        <div class="grid">
+          <div class="grid-item">
+            <img src="static/videos/BI.gif" alt="BI" width=32.5%>
+            <img src="static/videos/BE.gif" alt="BE" width=32.5%>
+            <img src="static/videos/Sponza.gif" alt="Sponza" width=32.5%>
+          </div>
+
+          <div class="grid-item">
+            <img src="static/videos/Angel.gif" alt="Angel" width=32.5%>
+            <img src="static/videos/diningroom.gif" alt="diningroom" width=32.5%>
+            <img src="static/videos/warmroom.gif" alt="warmroom" width=32.5%>
+          </div>
+        </div>
       </div>
+
+
+
        <br>
       <p> We utilized vulkan-based hybrid ray tracer to generate our subpixel sampling dataset. Our purpose is to optimize our approach for use in 3A gaming and virtual rendering applications. To accomplish this, we opted to conduct separate training for each 3D scene instead of a collective training approach, aligning with the pattern employed by NVIDIA DLSS. The training process was carried out across six distinct scenes, <b>BistroInterior</b>, <b>BistroExterior</b>, <b>Sponza</b>, <b>Diningroom</b>, <b>Angel</b> and <b>Warmroom</b>, contain more than one million triangles and featuring transparency, diffuse, specular, and soft shadow effects. All scenes include 100 to 1000 frames with a resolution of 1024×2048. We also rendered a validation set of 10 frames and a 50 frames test set for each scene. The ground truth image is rendered at 32768-spp for reference.</p>
         </p>
@@ -245,9 +296,6 @@ or
 	   <p>
             This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
            </p>
-            <p>
-              Website template based on <a href="https://github.com/nerfies/nerfies.github.io">this source code</a>.
-            </p>
           </div>
         </div>
       </div>
